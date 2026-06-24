@@ -3,159 +3,674 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zorn SMP</title>
+
+<title>Zorn SMP | Servidor Semi-Anárquico</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
+
+:root{
+--green:#63ff48;
+--green-dark:#1f7a1f;
+--dark:#080808;
+--card:#101010;
+--text:#ffffff;
+}
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-background:#0f0f0f;
+font-family:'Montserrat',sans-serif;
+background:#050505;
 color:white;
-text-align:center;
+overflow-x:hidden;
 }
+
+body::-webkit-scrollbar{
+width:10px;
+}
+
+body::-webkit-scrollbar-thumb{
+background:var(--green);
+}
+
+a{
+text-decoration:none;
+color:white;
+}
+
+section{
+padding:100px 8%;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+}
+
+/* NAVBAR */
+
+.navbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:999;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.65);
+backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo-nav{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo-nav img{
+width:60px;
+}
+
+.logo-nav h2{
+font-size:28px;
+font-weight:800;
+color:var(--green);
+}
+
+.menu{
+display:flex;
+gap:35px;
+}
+
+.menu a{
+font-weight:600;
+transition:.3s;
+}
+
+.menu a:hover{
+color:var(--green);
+}
+
+.play-btn{
+background:linear-gradient(90deg,#3fb92f,#63ff48);
+padding:14px 30px;
+border-radius:10px;
+font-weight:700;
+color:white;
+box-shadow:0 0 25px rgba(99,255,72,.5);
+}
+
+/* HERO */
 
 .hero{
-height:100vh;
+min-height:100vh;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#111,#1c1c1c);
+justify-content:center;
+text-align:center;
+position:relative;
+overflow:hidden;
 }
 
-h1{
-font-size:5rem;
-color:#F1FF00;
-text-shadow:0 0 20px #F1FF00;
+.hero::before{
+content:'';
+position:absolute;
+inset:0;
+
+background:
+linear-gradient(
+rgba(0,0,0,.55),
+rgba(0,0,0,.85)
+),
+
+url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070');
+
+background-size:cover;
+background-position:center;
+z-index:-2;
 }
 
-.subtitle{
-font-size:1.3rem;
-margin-top:10px;
-color:#ccc;
+.hero::after{
+content:'';
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at center,
+rgba(99,255,72,.15),
+transparent 60%);
+z-index:-1;
+}
+
+.hero-content{
+max-width:1100px;
+}
+
+.hero-logo{
+width:280px;
+margin-bottom:25px;
+
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-12px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+.hero h1{
+font-size:90px;
+font-weight:900;
+line-height:1;
+text-transform:uppercase;
+margin-bottom:15px;
+}
+
+.green{
+color:var(--green);
+text-shadow:0 0 20px var(--green);
+}
+
+.hero p{
+font-size:24px;
+color:#d7d7d7;
+margin-bottom:35px;
+}
+
+.hero-buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn-main{
+
+background:linear-gradient(
+90deg,
+#3fb92f,
+#63ff48
+);
+
+padding:18px 40px;
+border-radius:12px;
+font-weight:800;
+font-size:18px;
+
+box-shadow:
+0 0 25px rgba(99,255,72,.4);
+
+transition:.3s;
+}
+
+.btn-main:hover{
+transform:translateY(-4px);
+}
+
+.btn-discord{
+
+background:#5865F2;
+
+padding:18px 40px;
+border-radius:12px;
+font-weight:800;
+font-size:18px;
 }
 
 .ip-box{
-margin-top:30px;
-padding:15px 30px;
-background:#1d1d1d;
-border:2px solid #F1FF00;
-border-radius:12px;
-font-size:1.2rem;
+
+margin-top:35px;
+
+background:rgba(0,0,0,.45);
+
+border:1px solid rgba(99,255,72,.5);
+
+padding:20px;
+
+border-radius:15px;
+
+display:inline-block;
+
+font-size:22px;
+font-weight:700;
 }
 
-.buttons{
-margin-top:30px;
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-justify-content:center;
+.ip-box span{
+color:var(--green);
 }
 
-.btn{
-padding:15px 35px;
-border:none;
-border-radius:10px;
-font-size:1rem;
-font-weight:bold;
-cursor:pointer;
-text-decoration:none;
-transition:0.3s;
+@media(max-width:900px){
+
+.hero h1{
+font-size:55px;
 }
 
-.discord{
-background:#5865F2;
-color:white;
+.hero-logo{
+width:180px;
 }
 
-.store{
-background:#F1FF00;
-color:black;
+.menu{
+display:none;
+}
+  
+}
+.section-title{
+text-align:center;
+margin-bottom:70px;
 }
 
-.btn:hover{
-transform:scale(1.05);
+.section-title h2{
+font-size:50px;
+margin-bottom:15px;
 }
 
-.section{
-padding:80px 20px;
-}
-
-.card{
+.section-title p{
+color:#bcbcbc;
 max-width:800px;
 margin:auto;
-background:#1a1a1a;
-padding:30px;
-border-radius:15px;
 }
 
-footer{
-padding:30px;
-background:#090909;
-color:#777;
+.features-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.feature-card{
+background:#101010;
+border:1px solid rgba(255,255,255,.08);
+padding:35px;
+border-radius:20px;
+transition:.4s;
+}
+
+.feature-card:hover{
+transform:translateY(-8px);
+border-color:var(--green);
+box-shadow:0 0 25px rgba(99,255,72,.15);
+}
+
+.feature-icon{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.feature-card h3{
+margin-bottom:10px;
+font-size:25px;
+}
+
+.feature-card p{
+color:#cfcfcf;
+line-height:1.6;
+}
+
+.ranks-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:30px;
+}
+
+.rank-card{
+padding:40px;
+border-radius:25px;
+position:relative;
+overflow:hidden;
+transition:.4s;
+}
+
+.rank-card:hover{
+transform:translateY(-10px);
+}
+
+.zorn{
+background:linear-gradient(135deg,#3d1111,#741818);
+}
+
+.zornplus{
+background:linear-gradient(135deg,#123b12,#2a8b2a);
+}
+
+.rank-header{
+text-align:center;
+margin-bottom:25px;
+}
+
+.rank-header h3{
+font-size:45px;
+font-weight:900;
+}
+
+.rank-card ul{
+list-style:none;
+}
+
+.rank-card li{
+padding:12px 0;
+font-size:18px;
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 </style>
 </head>
 
 <body>
+<nav class="navbar">
+
+<div class="logo-nav">
+
+<img src="logo.png">
+
+<h2>ZORN SMP</h2>
+
+</div>
+
+<div class="menu">
+
+<a href="#caracteristicas">Características</a>
+<a href="#rangos">Rangos</a>
+<a href="#discord">Próximamente</a>
+<a href="#discord">Discord</a>
+
+</div>
+
+<a href="#discord" class="play-btn">
+JUGAR AHORA
+</a>
+
+</nav>
 
 <section class="hero">
 
-<h1>ZORN SMP</h1>
+<div class="hero-content">
 
-<p class="subtitle">
+<img src="logo.png" class="hero-logo">
+
+<h1>
+
+<span class="green">ZORN</span>
+
+SMP
+
+</h1>
+
+<p>
+
+SOBREVIVE • CONQUISTA • DOMINA
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#discord" class="btn-main">
+
+UNIRSE AL DISCORD
+
+</a>
+
+<a href="#rangos" class="btn-discord">
+
+VER RANGOS
+
+</a>
+
+</div>
+
+<div class="ip-box">
+
+IP OFICIAL:
+
+<span>
+
+zornsmp.xyz
+
+</span>
+
+</div>
+
+</div>
+
+
+</section>
+<section id="caracteristicas">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>¿POR QUÉ JUGAR EN ZORN SMP?</h2>
+
+<p>
+Una experiencia Semi-Anárquica diseñada para jugadores que buscan libertad, competición y progresión.
+</p>
+
+</div>
+
+<div class="features-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">⚔️</div>
+
+<h3>Semi-Anárquico</h3>
+
+<p>
+Forma alianzas, conquista territorios y escribe tu propia historia.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">🌍</div>
+
+<h3>Java y Bedrock</h3>
+
+<p>
+Juega desde PC, móvil o consola sin limitaciones.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">🏰</div>
+
+<h3>Construye Imperios</h3>
+
+<p>
+Protege tus recursos y expande tu dominio.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">🤝</div>
+
+<h3>Alianzas y Guerras</h3>
+
+<p>
+Coopera con otros jugadores o conviértete en su peor enemigo.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">🎁</div>
+
+<h3>Kits Exclusivos</h3>
+
+<p>
+Obtén ventajas y recompensas especiales.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">📈</div>
+
+<h3>Progresión Constante</h3>
+
+<p>
+Cada día ofrece nuevas oportunidades para crecer.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="rangos">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>RANGOS PREMIUM</h2>
+
+<p>
+Desbloquea ventajas exclusivas y destaca sobre el resto.
+</p>
+
+</div>
+
+<div class="ranks-grid">
+
+<div class="rank-card zorn">
+
+<div class="rank-header">
+
+<h3>ZORN</h3>
+
+</div>
+
+<ul>
+
+<li>✔ Prefijo exclusivo</li>
+
+<li>✔ Color personalizado</li>
+
+<li>✔ Beneficios especiales</li>
+
+<li>✔ Recompensas únicas</li>
+
+<li>✔ Acceso a ventajas exclusivas</li>
+
+</ul>
+
+</div>
+
+<div class="rank-card zornplus">
+
+<div class="rank-header">
+
+<h3>ZORN+</h3>
+
+</div>
+
+<ul>
+
+<li>✔ Todo lo incluido en Zorn</li>
+
+<li>✔ Kit Premium</li>
+
+<li>✔ Más recompensas</li>
+
+<li>✔ Beneficios mejorados</li>
+
+<li>✔ Ventajas avanzadas</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section id="discord">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>ÚNETE A NUESTRA COMUNIDAD</h2>
+
+<p>
+Mantente informado sobre la apertura, eventos y novedades de Zorn SMP.
+</p>
+
+</div>
+
+<div style="text-align:center;">
+
+<a href="https://discord.gg/fgR8vDAtqb"
+target="_blank"
+class="btn-main">
+
+UNIRSE AL DISCORD
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<footer style="
+padding:50px;
+text-align:center;
+background:#080808;
+border-top:1px solid rgba(255,255,255,.08);
+">
+
+<h2 style="color:#63ff48;">
+ZORN SMP
+</h2>
+
+<p style="margin-top:15px;">
+IP OFICIAL: zornsmp.xyz
+</p>
+
+<p style="margin-top:10px;color:#888;">
 Servidor Semi-Anárquico para Java y Bedrock
 </p>
 
-<div class="ip-box">
-IP: play.zornsmp.xyz
-</div>
-
-<div class="buttons">
-
-<a class="btn discord"
-href="https://discord.gg/TUINVITACION">
-Discord
-</a>
-
-<a class="btn store"
-href="#">
-Tienda
-</a>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<div class="card">
-
-<h2>Próximamente...</h2>
-
-<br>
-
-<p>
-Forma alianzas, conquista territorios, consigue los mejores kits y conviértete en una leyenda dentro de Zorn SMP.
+<p style="margin-top:20px;color:#666;">
+© 2026 Zorn SMP. Todos los derechos reservados.
 </p>
 
-<br>
-
-<p>
-Compatible con Java y Bedrock.
-</p>
-
-</div>
-
-</section>
-
-<footer>
-© 2026 Zorn SMP - Todos los derechos reservados
 </footer>
 
 </body>
