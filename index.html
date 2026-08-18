@@ -92,7 +92,8 @@ color:var(--green);
 
 .menu{
 display:flex;
-gap:35px;
+gap:30px;
+align-items:center;
 }
 
 .menu a{
@@ -102,6 +103,23 @@ transition:.3s;
 
 .menu a:hover{
 color:var(--green);
+}
+
+/* BOTON TIENDA */
+
+.shop-nav{
+background:linear-gradient(90deg,#3fb92f,#63ff48);
+padding:11px 20px;
+border-radius:9px;
+font-weight:800;
+box-shadow:0 0 18px rgba(99,255,72,.3);
+transition:.3s;
+}
+
+.shop-nav:hover{
+transform:translateY(-3px);
+box-shadow:0 0 28px rgba(99,255,72,.6);
+color:white !important;
 }
 
 .play-btn{
@@ -161,7 +179,6 @@ max-width:1100px;
 .hero-logo{
 width:280px;
 margin-bottom:25px;
-
 animation:float 4s ease-in-out infinite;
 }
 
@@ -228,6 +245,7 @@ transition:.3s;
 
 .btn-main:hover{
 transform:translateY(-4px);
+box-shadow:0 0 35px rgba(99,255,72,.7);
 }
 
 .btn-discord{
@@ -238,6 +256,31 @@ padding:18px 40px;
 border-radius:12px;
 font-weight:800;
 font-size:18px;
+
+transition:.3s;
+}
+
+.btn-discord:hover{
+transform:translateY(-4px);
+}
+
+.btn-shop{
+
+background:linear-gradient(90deg,#1f7a1f,#63ff48);
+
+padding:18px 40px;
+border-radius:12px;
+font-weight:800;
+font-size:18px;
+
+box-shadow:0 0 25px rgba(99,255,72,.4);
+
+transition:.3s;
+}
+
+.btn-shop:hover{
+transform:translateY(-4px);
+box-shadow:0 0 35px rgba(99,255,72,.7);
 }
 
 .ip-box{
@@ -275,8 +318,11 @@ width:180px;
 .menu{
 display:none;
 }
-  
+
 }
+
+/* SECTION TITLES */
+
 .section-title{
 text-align:center;
 margin-bottom:70px;
@@ -292,6 +338,8 @@ color:#bcbcbc;
 max-width:800px;
 margin:auto;
 }
+
+/* FEATURES */
 
 .features-grid{
 display:grid;
@@ -327,6 +375,8 @@ font-size:25px;
 color:#cfcfcf;
 line-height:1.6;
 }
+
+/* RANKS */
 
 .ranks-grid{
 display:grid;
@@ -373,10 +423,58 @@ padding:12px 0;
 font-size:18px;
 border-bottom:1px solid rgba(255,255,255,.08);
 }
+
+/* TIENDA */
+
+.shop-section{
+text-align:center;
+}
+
+.shop-box{
+max-width:900px;
+margin:auto;
+padding:50px;
+background:
+linear-gradient(
+135deg,
+rgba(99,255,72,.08),
+rgba(0,0,0,.6)
+);
+
+border:1px solid rgba(99,255,72,.25);
+border-radius:25px;
+
+box-shadow:0 0 40px rgba(99,255,72,.08);
+}
+
+.shop-box h3{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.shop-box p{
+color:#bcbcbc;
+font-size:18px;
+line-height:1.7;
+margin-bottom:30px;
+}
+
+/* FOOTER */
+
+footer{
+padding:50px;
+text-align:center;
+background:#080808;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- NAVBAR -->
+
 <nav class="navbar">
 
 <div class="logo-nav">
@@ -390,17 +488,29 @@ border-bottom:1px solid rgba(255,255,255,.08);
 <div class="menu">
 
 <a href="#caracteristicas">Características</a>
+
 <a href="#rangos">Rangos</a>
-<a href="#discord">Próximamente</a>
+
+<a href="#tienda">Tienda</a>
+
 <a href="#discord">Discord</a>
 
 </div>
 
-<a href="#discord" class="play-btn">
-JUGAR AHORA
+<a
+href="https://shopzornsmp.tebex.io/"
+target="_blank"
+rel="noopener noreferrer"
+class="shop-nav">
+
+🛒 TIENDA
+
 </a>
 
 </nav>
+
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -436,6 +546,16 @@ VER RANGOS
 
 </a>
 
+<a
+href="https://shopzornsmp.tebex.io/"
+target="_blank"
+rel="noopener noreferrer"
+class="btn-shop">
+
+🛒 VISITAR TIENDA
+
+</a>
+
 </div>
 
 <div class="ip-box">
@@ -452,8 +572,11 @@ zornsmp.xyz
 
 </div>
 
-
 </section>
+
+
+<!-- CARACTERISTICAS -->
+
 <section id="caracteristicas">
 
 <div class="container">
@@ -549,6 +672,8 @@ Cada día ofrece nuevas oportunidades para crecer.
 </section>
 
 
+<!-- RANGOS -->
+
 <section id="rangos">
 
 <div class="container">
@@ -587,6 +712,7 @@ margin-bottom:20px;
 
 </div>
 
+
 <div class="rank-card zornplus">
 
 <div class="rank-header">
@@ -616,6 +742,51 @@ margin-bottom:20px;
 </div>
 
 </section>
+
+
+<!-- TIENDA -->
+
+<section id="tienda" class="shop-section">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>TIENDA ZORN SMP</h2>
+
+<p>
+Consigue rangos, kits y ventajas exclusivas para mejorar tu experiencia dentro del servidor.
+</p>
+
+</div>
+
+<div class="shop-box">
+
+<h3>🛒 TIENDA OFICIAL</h3>
+
+<p>
+Apoya el servidor y consigue productos exclusivos para Zorn SMP.
+</p>
+
+<a
+href="https://shopzornsmp.tebex.io/"
+target="_blank"
+rel="noopener noreferrer"
+class="btn-shop">
+
+VISITAR TIENDA
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DISCORD -->
+
 <section id="discord">
 
 <div class="container">
@@ -632,8 +803,10 @@ Mantente informado sobre la apertura, eventos y novedades de Zorn SMP.
 
 <div style="text-align:center;">
 
-<a href="https://discord.gg/rx8sZ7kgCr"
+<a
+href="https://discord.gg/rx8sZ7kgCr"
 target="_blank"
+rel="noopener noreferrer"
 class="btn-main">
 
 UNIRSE AL DISCORD
@@ -646,12 +819,10 @@ UNIRSE AL DISCORD
 
 </section>
 
-<footer style="
-padding:50px;
-text-align:center;
-background:#080808;
-border-top:1px solid rgba(255,255,255,.08);
-">
+
+<!-- FOOTER -->
+
+<footer>
 
 <h2 style="color:#63ff48;">
 ZORN SMP
